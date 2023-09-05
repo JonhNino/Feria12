@@ -6,7 +6,7 @@
     <persistence-unit name="feria">
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-            <property name="javax.persistence.jdbc.user" value="feria_libro"></property>
+            <property name="javax.persistence.jdbc.user" value="SYS"></property>
             <property name="javax.persistence.jdbc.password" value="A"></property>
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"></property>
         </properties>
