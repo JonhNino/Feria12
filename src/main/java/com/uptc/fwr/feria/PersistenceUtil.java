@@ -11,7 +11,7 @@ public class PersistenceUtil {
         ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("feria");
     }
 
-    public static EntityManager getEntityManagerFactory(){
+    public static EntityManager getEntityManager(){
         return ENTITY_MANAGER_FACTORY.createEntityManager();
     }
 }
