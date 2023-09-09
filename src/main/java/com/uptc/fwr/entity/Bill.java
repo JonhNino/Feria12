@@ -1,9 +1,6 @@
 package com.uptc.fwr.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -13,12 +10,15 @@ import java.util.Date;
 public class Bill {
 
     @Id
-    @Column(name="ID_COMPRA")
+    @Column(name = "ID_COMPRA")
     private Long id;
-    @Column(name="ID_PERSONA")
+    @Column(name = "ID_PERSONA", insertable = false, updatable = false)
     private Long personId;
-
+    @Column(name = "FECHA")
     private Date fecha;
+    @ManyToOne
+    @JoinColumn(name ="ID_PERSONA")
+    private Person person;
 
     public Bill() {
     }
@@ -47,6 +47,13 @@ public class Bill {
     public Long getId() {
         return id;
     }
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     @Override
     public String toString() {
@@ -56,5 +63,4 @@ public class Bill {
                 ", fecha=" + fecha +
                 '}';
     }
-
 }

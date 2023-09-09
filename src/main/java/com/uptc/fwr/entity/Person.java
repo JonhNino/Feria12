@@ -1,9 +1,8 @@
 package com.uptc.fwr.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="PERSONAS")
@@ -17,7 +16,10 @@ public class Person {
     private String lastName;
     @Column(name="NACIONALIDAD")
     private String nationality;
-
+    @OneToMany(mappedBy = "person")
+    private List<Bill> bills;
+    @ManyToMany(mappedBy = "autors")
+    private List<Book> books;
     public Person() {
 
     }
@@ -54,6 +56,22 @@ public class Person {
         this.nationality = nationality;
     }
 
+
+    public List<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
     @Override
     public String toString() {
         return "Person{" +

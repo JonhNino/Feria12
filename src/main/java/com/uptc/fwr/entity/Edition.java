@@ -1,9 +1,6 @@
 package com.uptc.fwr.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="EDICIONES")
@@ -17,6 +14,9 @@ public class Edition {
     private int number;
     @Column(name ="DESCRIPCION")
     private String description;
+    @OneToOne
+    @JoinColumn(name = "ID_LIBRO")
+    private Book book;
 
     public Edition() {
     }
@@ -51,6 +51,14 @@ public class Edition {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     @Override
