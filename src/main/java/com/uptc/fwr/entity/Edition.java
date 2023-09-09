@@ -16,6 +16,7 @@ public class Edition {
     private String description;
     @OneToOne
     @JoinColumn(name = "ID_LIBRO")
+    @MapsId
     private Book book;
 
     public Edition() {

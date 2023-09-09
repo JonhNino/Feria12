@@ -2,11 +2,12 @@ package com.uptc.fwr.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="COMPRAS")
-
 public class Bill {
 
     @Id
@@ -19,10 +20,19 @@ public class Bill {
     @ManyToOne
     @JoinColumn(name ="ID_PERSONA")
     private Person person;
+    @OneToMany(mappedBy = "bill")
+    private List<BillDetail> billDetails;
 
     public Bill() {
     }
 
+    public List<BillDetail> getBillDetails() {
+        return billDetails;
+    }
+
+    public void setBillDetails(List<BillDetail> billDetails) {
+        this.billDetails = billDetails;
+    }
 
     public Long getPersonId() {
         return personId;

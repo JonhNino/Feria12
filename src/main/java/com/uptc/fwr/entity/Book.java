@@ -2,6 +2,7 @@ package com.uptc.fwr.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,9 +24,18 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name="ID_AUTOR"))
     private List<Person> autors;
 
+    @OneToMany(mappedBy = "book")
+    private List<BillDetail> billDetails ;
+
 
     public Book() {
 
+    }
+
+    public Book(Long id, String title, Double price) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
     }
 
     public void setId(Long id) {
@@ -36,7 +46,7 @@ public class Book {
         return id;
     }
 
-    public String getTitle() {
+    public String getTitle(String s) {
         return title;
     }
 
@@ -66,6 +76,18 @@ public class Book {
 
     public void setAutors(List<Person> autors) {
         this.autors = autors;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<BillDetail> getBillDetails() {
+        return billDetails;
+    }
+
+    public void setBillDetails(List<BillDetail> billDetails) {
+        this.billDetails = billDetails;
     }
 
     @Override
