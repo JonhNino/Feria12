@@ -7,6 +7,7 @@ import java.sql.SQLOutput;
 public class main {
 
     public static void main(String[] args) {
+
         testBillPerson();
         EntityManager entityManager = PersistenceUtil.getEntityManager();
         Person person = entityManager.find(Person.class, 12);
@@ -25,10 +26,10 @@ public class main {
         System.out.println(person.getBills().size());
         Bill bill = entityManager.find(Bill.class,20);
         System.out.println(bill);
-        System.out.println(bill.getId());
+        System.out.println(bill.getPerson());
 
     }
-    public static void relacionPerson(){
+    public static void testBook(){
 
         EntityManager entityManager = PersistenceUtil.getEntityManager();
         Edition edition = entityManager.find(Edition.class,10);
@@ -43,8 +44,13 @@ public class main {
     public static void removePerson(){
 
         EntityManager entityManager = PersistenceUtil.getEntityManager();
-        Edition edition = entityManager.find(Edition.class,10);
-        System.out.println(edition);
+        Person person = entityManager.find(Person.class,12);
+        System.out.println(person);
+        entityManager.getTransaction().begin();
+        entityManager.remove(person);
+        person.setLastName("Uganda");
+        entityManager.persist(person);
+        entityManager.getTransaction().commit();
 
     }
     public static void createPerson(){
@@ -61,7 +67,7 @@ public class main {
         System.out.println(person);
 
     }
-    public static void mergePer(){
+    public static void mergePerson(){
 
         // probarMapeo();
         createPerson();
@@ -73,6 +79,18 @@ public class main {
         entityManager.persist(person);
         entityManager.getTransaction().commit();
 
+    }
+
+    public static void detachPerson(){
+
+        EntityManager entityManager = PersistenceUtil.getEntityManager();
+        Person person = entityManager.find(Person.class,9);
+        entityManager.getTransaction().begin();
+        person.setLastName("Martinez");
+        entityManager.detach(person);
+        Person person1 = entityManager.merge(person);
+        entityManager.remove(person1);
+        entityManager.getTransaction().commit();
     }
     public static void findPersonRefresh(){
 
